@@ -6,7 +6,7 @@ const EditorWindow = (props) => {
         <textarea 
         className="form-control editor-window" 
         rows="3" 
-        value="here are your thoughts"
+        value={props.content}
         /> 
     )
 }
