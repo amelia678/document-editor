@@ -8,6 +8,7 @@ class NotesApp extends Component {
         super(props);
         this.state = {
             currentNoteId : 10,
+            searchTerm: '',
             notes: [
                 {
                     id: 1001,
@@ -24,6 +25,12 @@ class NotesApp extends Component {
                     id: 1004,
                     title: 'note #3',
                     content: 'la'
+                },
+
+                {
+                    id: 1006,
+                    title: 'note #4',
+                    content: 'hahahHAHAHAHAH'
                 }
 
 
@@ -35,9 +42,12 @@ class NotesApp extends Component {
         return (
             <div className="notes-app">
             <h1>NotesApp</h1>
-            <SearchBar />
+            <SearchBar 
+            searchTerm= {this.state.searchTerm}
+            handleInput = {this._setSearchTerm}
+                />
             <NotesList 
-             notes = {this.state.notes}
+             notes = {this._searchNotes(this.state.searchTerm)}
              handleClick = {this._setCurrentNoteId}
              />
             <EditorWindow
@@ -47,6 +57,13 @@ class NotesApp extends Component {
             />
             </div>
         );
+    }
+
+    _setSearchTerm = (term) => {
+        console.log(`they said: ${term}`);
+        this.setState({
+            searchTerm: term
+        })
     }
 
     _setCurrentNoteId = (noteId) => {
@@ -62,6 +79,19 @@ class NotesApp extends Component {
             return note.id === idToFind
         });
         return theOne || { content: ''};
+    }
+
+    _searchNotes = (term) => {
+        // filter out any notes that do not
+        // include the term in either title
+        // or content
+        const filteredNotes = this.state.notes.filter(note => {
+            const termIsInTitle = note.title.includes(term);
+            const termISInContent = note.content.includes(term);
+
+            return termIsInTitle || termISInContent
+        });
+        return filteredNotes;
     }
 }
 
