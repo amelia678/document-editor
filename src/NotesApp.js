@@ -37,7 +37,8 @@ class NotesApp extends Component {
             <h1>NotesApp</h1>
             <SearchBar />
             <NotesList 
-             notes = {this.state.notes.map(note => note.title)}
+             notes = {this.state.notes}
+             handleClick = {this._setCurrentNoteId}
              />
             <EditorWindow
             content= {
@@ -46,6 +47,13 @@ class NotesApp extends Component {
             />
             </div>
         );
+    }
+
+    _setCurrentNoteId = (noteId) => {
+        console.log(`this is the id: ${noteId}`);
+        this.setState({
+            currentNoteId : noteId
+        })
     }
 
     _getById = (idToFind) =>  {
