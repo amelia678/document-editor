@@ -3,9 +3,11 @@ import React from 'react';
 
 const EditorWindow = (props) => {
     return (
-        <div className="editor-window">
-            here are your thoughts
-        </div>
+        <textarea 
+        className="form-control editor-window" 
+        rows="3" 
+        value="here are your thoughts"
+        /> 
     )
 }
 

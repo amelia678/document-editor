@@ -7,7 +7,10 @@ class NotesApp extends Component {
     }
 
     render() {
-        return ();
+        return (
+            <div className="notes-app">
+            </div>
+        );
     }
 }
 
