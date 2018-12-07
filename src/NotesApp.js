@@ -7,6 +7,7 @@ class NotesApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentNoteIndex : 0,
             notes: [
                 {
                     title: 'note #1',
@@ -38,7 +39,7 @@ class NotesApp extends Component {
              />
             <EditorWindow
             content= {
-                'here are your thoughts'
+                this.state.notes[this.state.currentNoteIndex].content
             }
             />
             </div>
